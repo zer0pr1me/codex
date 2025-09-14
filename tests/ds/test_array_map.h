@@ -13,7 +13,7 @@ static bool test_add_get() {
   return strcmp(zero, "one") == 0;
 }
 
-CdxTestSuite ds_array_map = {
+CdxTestSuite test_suite = {
   .title = "ArrayMap",
   .filename = __FILE__,
   .tests = (CdxTest[]) {

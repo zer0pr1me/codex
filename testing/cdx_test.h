@@ -15,7 +15,7 @@ typedef struct {
   CdxTest *tests;
 } CdxTestSuite;
 
-static void cdx_test_suite_run(CdxTestSuite suite) {
+static bool cdx_test_suite_run(CdxTestSuite suite) {
   printf("RUNNING TEST SUITE\n");
   printf("\"%s\" (in %s)\n", suite.title, suite.filename);
   printf("===========================================================\n");

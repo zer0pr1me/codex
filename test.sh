@@ -1,33 +1,11 @@
 #!/bin/sh
 
-# TODO: structure UTs by units (one for each header)
-CC=${CC:=gcc}
-LIBPATH="-L./build"
-LIBS="-lcodex"
-TESTS=tests/*.c
-INCLUDE="-I./"
-CFLAGS="-Wno-discarded-qualifiers -Wno-format-truncation -no-pie"
-
 # for includes
 ln -s . codex 
 
-# V2, TODO: make automatic runner for all files with CdxTestSuite 
-$CC tests/_00_test_suite_runner.c -g -o tests.bin $INCLUDE
-./tests.bin
-
-for test in $TESTS; do
-	echo "Running test $test..."
-	testbin="$test.bin"
-	$CC $CFLAGS -no-pie -g -o "$testbin" $INCLUDE $test $LIBPATH $LIBS
-	if ! ./$testbin > /dev/null; then
-		echo "FAILURE"
-    unlink codex
-		exit 1
-	else
-		echo "SUCCESS"
-		rm $testbin
-	fi
-done
-
+testing/test_runner.sh tests
+test_result=$?
 
 unlink codex
+
+exit $test_result

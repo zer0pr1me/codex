@@ -1,6 +1,6 @@
 #include <stdbool.h>
 
-#include "codex/testing/cdx_test.h"
+#include "cdx_test.h"
 
 #ifndef SUITE_HEADER
   #error "Define SUITE_HEADER=path/to/suite.h"
@@ -13,9 +13,9 @@
 #define STRINGIFY(x) #x
 #define EXPAND_AND_STRINGIFY(X) STRINGIFY(X)
 
-#include EXPAND_AND_STRINGIFY(SUITE_HEADER)
+#include SUITE_HEADER
 
 int main(void) {
-  return cdx_suite_run_tests(SUITE_SYMBOL) == true;
+  return cdx_test_suite_run(SUITE_SYMBOL) != true;
 }
 
